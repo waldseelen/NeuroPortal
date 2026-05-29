@@ -1,0 +1,193 @@
+{
+  "navbar": {
+    "adhd": "DEHB",
+    "okb": "OKB",
+    "polimatlik": "Polimatlık",
+    "technics": "Technics",
+    "about": "Hakkında"
+  },
+  "common": {
+    "themeToggle": "Tema Değiştir",
+    "language": "Dil",
+    "source": "Kaynak",
+    "details": "Detayları Göster",
+    "hideDetails": "Detayları Gizle",
+    "placeholderPage": "Bu sayfa yakında zengin içeriklerle güncellenecektir.",
+    "backToHome": "Giriş Sayfasına Dön"
+  },
+  "onboarding": {
+    "title": "Nereden Başlamalıyım? (Kişisel Yol Haritası)",
+    "desc": "Şu anda sizi en çok zorlayan durumu seçin; beyin kimyanıza en uygun adımlara doğrudan yönlendirileceksiniz:",
+    "cards": {
+      "baslangic": {
+        "title": "Çalışmaya Başlayamıyorum",
+        "desc": "Eylemsizlik ve ertelemeyi kırmak için ilk ivme.",
+        "action": "Teknikleri Gör →"
+      },
+      "dikkat": {
+        "title": "Dikkatim Çok Kolay Dağılıyor",
+        "desc": "Çevresel uyaranları susturup odaklanmayı sürdürmek.",
+        "action": "Teknikleri Gör →"
+      },
+      "odaklanamama": {
+        "title": "Odakta Kalamıyorum",
+        "desc": "Bilişsel dayanıklılığı artırmak ve sürdürülebilirlik.",
+        "action": "Teknikleri Gör →"
+      },
+      "zihin": {
+        "title": "Zihnim Aşırı Dağınık",
+        "desc": "Prefrontal korteksin üzerindeki çalışma belleği yükünü boşaltmak.",
+        "action": "Teknikleri Gör →"
+      }
+    }
+  },
+  "adhd": {
+    "title": "DEHB: Çalışma Teknikleri + Beyin Bilimsel Hackler",
+    "tabs": {
+      "farklar": "Temel Farklar",
+      "calisma": "Çalışma Teknikleri",
+      "hackler": "Beyin Bilimsel Hackler"
+    },
+    "subtabs": {
+      "dehb": "DEHB teknikleri",
+      "normal": "Nörotipikal teknikler",
+      "ortak": "İkisi için de işe yarar"
+    },
+    "hackTabs": {
+      "egzersiz": "Egzersiz",
+      "beslenme": "Beslenme",
+      "ortam": "Ortam & yapı",
+      "bilistek": "Bilişsel teknikler",
+      "uyku": "Uyku"
+    },
+    "filters": {
+      "panelTitle": "Gelişmiş Dinamik Filtreleme",
+      "evidence": "Kanıt Seviyesi:",
+      "speed": "Etki Hızı:",
+      "all": "Hepsi",
+      "allSpeed": "Tümü",
+      "strong": "Yalnızca Güçlü Kanıtlar",
+      "instant": "Anında",
+      "long": "Orta/Uzun Vadeli"
+    },
+    "table": {
+      "headerSubject": "Konu",
+      "headerAdhd": "DEHB Beyni",
+      "headerNormal": "Nörotipikal Beyin",
+      "rows": {
+        "motivasyon": {
+          "subject": "Motivasyon kaynağı",
+          "adhd": "İlgi, merak, aciliyet veya ödül olmadan motor çalışmaz.",
+          "normal": "Gelecekteki ödülü hayal ederek ve hedeflerine bağlı kalarak çalışabilir."
+        },
+        "zaman": {
+          "subject": "Zaman algısı",
+          "adhd": "Şimdi ve şimdi değil — ara zaman hissi zayıftır.",
+          "normal": "Geçmiş, şimdi ve gelecek çizgisel ve net biçimde hissedilir."
+        },
+        "dikkat": {
+          "subject": "Dikkat süresi",
+          "adhd": "Hiperfokus (2-4 saat aralıksız) ya da sıfır odak — orta noktası yoktur.",
+          "normal": "Orta düzeyde, sürdürülebilir ve kontrollü dikkat."
+        },
+        "calisma": {
+          "subject": "En iyi çalışma süresi",
+          "adhd": "Kısa ve yoğun sprintler (15-25 dk), ardından hareketli molalar.",
+          "normal": "Uzun ve sabit bloklar (45-90 dk) yüksek verimlilik sağlar."
+        },
+        "yapi": {
+          "subject": "Yapı ihtiyacı",
+          "adhd": "Dışarıdan yapı gerekir (alarmlar, listeler, body double vb.).",
+          "normal": "İç disiplin ve plan yeterlidir; dışsal destek isteğe bağlıdır."
+        },
+        "gurultu": {
+          "subject": "Gürültü / ortam",
+          "adhd": "Arkaplan ritimleri (lofi, kahvehane gürültüsü) odaklanmayı destekler.",
+          "normal": "Mutlak sessizlik veya hafif, melodisiz enstrümantal sesler tercih edilir."
+        },
+        "baslama": {
+          "subject": "Görev başlama",
+          "adhd": "Başlamak bitmekten kat kat zordur — ilk adım en büyük dirençtir.",
+          "normal": "Göreve başlamak görece kolaydır, erteleme döngüleri daha kısadır."
+        }
+      }
+    },
+    "desc": "DEHB beyninin nörolojik çalışma yapısını anlamak, dopamin mekanizmasını optimize etmek ve prefrontal kortekse binen yükü hafifletmek için hazırlanmış eksiksiz pratik kılavuz.",
+    "crossTitle": "Çapraz Bağlantı: OKB Zıtlığı",
+    "crossDesc": "DEHB beyni uyarım ve esneklik ararken, OKB beyni kontrol ve kesinlik döngüleri geliştirir. Bu iki zıt nörolojik yapıyı kıyaslamak için OKB sayfamızı inceleyin.",
+    "crossAction": "→ OKB Sayfasına Git",
+    "quickGlanceTitle": "Hızlı Bakış Paneli (Kart Odaklama)",
+    "displayedCount": "Görüntülenen",
+    "totalCount": "toplam içinden",
+    "healthWarning": "Önemli Sağlık Uyarısı: Beslenme destekleri hekim gözetiminde ve kan testleri doğrultusunda eksiklik tespit edildiğinde kullanılmalıdır. İlaç yerine geçmez.",
+    "noHacksFound": "Bu kategori ve filtre kombinasyonuna uyan hack bulunamadı. Lütfen filtre ayarlarını değiştirin.",
+    "cognitiveHint": "Bilişsel İpucu",
+    "neurotypicalHint": "Nörotipikal Rehber",
+    "universalHint": "Evrensel Prensipler",
+    "cognitiveHintDesc": "DEHB beyninde temel sorun odaklanma eksikliği değil, dopamin seviyesini düzenleme güçlüğüdür. Teknikler bu kimyasal eşiği aşmaya yardımcı olmalıdır.",
+    "neurotypicalHintDesc": "Nörotipikal Beyin uzun vadeli hedeflerden ve gelecek tasarımlarından motivasyon alabilir. Asıl tuzak: aşırı planlama yapıp eyleme geçmeyi geciktirmektir.",
+    "universalHintDesc": "Bu çalışma prensipleri, nörotipikal veya DEHB fark etmeksizin tüm bireylerde bilişsel performansı ve hafıza konsolidasyonunu doğrudan artırır.",
+    "solutionPrefix": "Çözüm"
+  },
+  "okb": {
+    "title": "OKB: Obsesif Kompulsif Bozukluk Kılavuzu",
+    "description": "Obsesyon ve kompulsiyon döngülerini kırmak, beyindeki belirsizlik alarmını susturmak ve ERP (Maruz Bırakma ve Tepki Önleme) metodu üzerine pratik stratejiler.",
+    "connectionTitle": "DEHB Bağlantısı: Dikkat vs. Aşırı Kontrol",
+    "connectionDesc": "DEHB beyni dopamin yetersizliğinden ötürü odak başlatamazken, OKB beyni prefrontal korteksteki hata sinyali nedeniyle aşırı odaklanır ve takılı kalır.",
+    "connectionAction": "→ DEHB Sayfasına Git",
+    "loopTitle": "OKB Döngüsü Nasıl Çalışır?",
+    "loopObsessionTitle": "1. Obsesyon",
+    "loopObsessionDesc": "İstenmeyen, zihne aniden gelen rahatsız edici düşünce veya şüphe.",
+    "loopObsessionExample": "Örn: \"Ya kapıyı kilitlemediysem?\"",
+    "loopAnxietyTitle": "2. Yoğun Anksiyete",
+    "loopAnxietyDesc": "Beyindeki amigdala 'acil durum' alarmı verir; yüksek kaygı ve rahatsızlık oluşur.",
+    "loopAnxietyExample": "Örn: Tehlike ve belirsizlik hissi",
+    "loopCompulsionTitle": "3. Kompulsiyon",
+    "loopCompulsionDesc": "Anksiyeteyi azaltmak için yapılan fiziksel veya zihinsel tekrarlı davranışlar.",
+    "loopCompulsionExample": "Örn: Gidip kapıyı defalarca kontrol etmek",
+    "loopReliefTitle": "4. Geçici Rahatlama",
+    "loopReliefDesc": "Kaygı anlık düşer; ancak bu eylem beyne 'kompulsiyon işe yaradı' mesajı iletir.",
+    "loopReliefExample": "Tuzak: Bir sonraki obsesyonu besler!",
+    "erpTitle": "ERP (Maruz Bırakma ve Tepki Önleme) Stratejileri",
+    "erpGoldenRuleTitle": "Bilişsel Altın Kural:",
+    "erpGoldenRuleDesc": "Kompulsiyonu (kontrol etmeyi, yıkamayı, zihinsel onayı) yapmadığınızda anksiyete sonsuza kadar artmaz. Beyin bir süre sonra alarmı söndürmeyi öğrenir (Alışma / Habituation).",
+    "erpCard1Title": "1. Kaygı Hiyerarşisi Oluşturma",
+    "erpCard1Desc": "Sizi en az tetikleyen durumdan en çok tetikleyene doğru 1'den 10'a kadar puan verdiğiniz bir liste hazırlayın. Egzersizlere en düşük puandan başlayın.",
+    "erpCard2Title": "2. Geciktirme ve Süre Uzatma",
+    "erpCard2Desc": "Obsesyon tetiklendiğinde kompulsiyonu hemen yapmak yerine kendinize 5 dakika sınır koyun. Bu süreyi zamanla 15, 30 ve 60 dakikaya çıkarın.",
+    "erpCard3Title": "3. Belirsizlik Egzersizleri",
+    "erpCard3Desc": "\"%100 emin olmak imkansızdır\" gerçeğini kabul edin. Zihne \"Belki öyledir, belki de değil, şu an bunu bilemem ve bu riskle yaşayabilirim\" deyin."
+  },
+  "polimatlik": {
+    "title": "Polimatlık: Çok Yönlü Zihinsel Ustalaşma",
+    "description": "Farklı bilim ve sanat disiplinlerini sentezlemek, T-şekilli uzmanlık modelleri geliştirmek ve çok yönlü öğrenme merakını kontrol altında tutma yolları.",
+    "connectionTitle": "DEHB Bağlantısı: Hiperfokus ve Merak",
+    "connectionDesc": "DEHB beyninin getirdiği hızlı sıkılma ve dallanıp budaklanan ilgi alanları, doğru sentezlenirse polimatlık için güçlü bir yaratıcılık yakıtına dönüşebilir.",
+    "connectionAction": "→ DEHB Sayfasına Git",
+    "tshapedTitle": "Modern Polimat Model: T-Tipi Uzmanlık",
+    "tshapedHorizontalTitle": "Yatay Çizgi: Disiplinlerarası Genişlik",
+    "tshapedHorizontalSubtitle": "Çeşitli alanlar hakkında temel düzeyde okuryazarlık",
+    "tshapedHorizontalDesc": "Fikir üretebilecek, kavramları birbirine bağlayabilecek ve farklı uzmanlarla konuşabilecek kadar geniş bir zihinsel kütüphane edinme.",
+    "tshapedHorizontalExample": "Örn: Temel düzeyde Kodlama, Psikoloji, Tasarım ve Finans bilgisi.",
+    "tshapedVerticalTitle": "Dikey Çizgi: Derinlik & Uzmanlık",
+    "tshapedVerticalSubtitle": "Tek bir alanda dünya standartlarında pratik beceri",
+    "tshapedVerticalDesc": "Geniş ilgi alanlarının altında en az bir temel dalda uzmanlık inşa ederek gerçek değer üretimi sağlama ve pazarda yer edinme.",
+    "tshapedVerticalExample": "Örn: Kıdemli Yazılım Mimarlığı veya Uzman Doktorluk.",
+    "synthesisTitle": "Çok Yönlü Zihinsel Gelişim Stratejileri",
+    "synthesisGoldenRuleTitle": "Öğrenme Prensibi:",
+    "synthesisGoldenRuleDesc": "Bir alanda öğrendiğiniz bir zihinsel modeli (zaman yönetimi, soyutlama, sistem düşüncesi vb.) tamamen farklı bir alana entegre ettiğinizde, yaratıcı sıçramalar gerçekleşir.",
+    "synthesisCard1Title": "1. Proje Odaklı Öğrenme",
+    "synthesisCard1Desc": "Yalnızca okumak yerine disiplinleri birleştiren somut projeler üretin. Örneğin: Bir tarih bloğu kodlamak (Tarih + Kodlama + Tasarım).",
+    "synthesisCard2Title": "2. İlgi Alanı Zaman Bloklama",
+    "synthesisCard2Desc": "Aynı anda her şeyi öğrenmeye çalışıp dağılmak yerine, 3 aylık dönemler belirleyin ve her dönemde yalnızca bir ikincil ilgi alanına odaklanın.",
+    "synthesisCard3Title": "3. Bilgi Sentez Günlüğü",
+    "synthesisCard3Desc": "Günde 10 dakika, o gün öğrendiğiniz iki tamamen alakasız kavram arasındaki gizli ortak noktaları bulup yazarak sentez kasınızı geliştirin."
+  },
+  "footer": {
+    "visionTitle": "NeuroPortal Vizyonu",
+    "missionTitle": "NeuroPortal Misyonu",
+    "vision": "Karmaşık akademik araştırmaları ve nörogelişimsel bulguları, herkes için pratik, uygulanabilir bilişsel protokollere dönüştürerek zihinsel potansiyeli ve yaşam kalitesini bilimsel dayanaklarla maksimize etmek.",
+    "mission": "DEHB, OKB ve çok yönlü öğrenme (Polimatlık) gibi nörodiverjan yapıların benzersiz zihinsel gereksinimlerine hitap eden, kanıta dayalı, etik ve sürdürülebilir öğrenme metotlarını açık kaynaklı bir platformda bir araya getirmek.",
+    "aboutButton": "Akademik Künye & Referanslar →"
+  }
+}

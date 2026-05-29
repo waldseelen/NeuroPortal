@@ -1,0 +1,193 @@
+{
+  "navbar": {
+    "adhd": "ADHD",
+    "okb": "OCD",
+    "polimatlik": "Polymathy",
+    "technics": "Technics",
+    "about": "About"
+  },
+  "common": {
+    "themeToggle": "Toggle Theme",
+    "language": "Language",
+    "source": "Source",
+    "details": "Show Details",
+    "hideDetails": "Hide Details",
+    "placeholderPage": "This page will be updated with rich content soon.",
+    "backToHome": "Back to Home"
+  },
+  "onboarding": {
+    "title": "Where Should I Start? (Personal Roadmap)",
+    "desc": "Select the challenge that bothers you the most right now; you will be directed straight to the steps that fit your brain chemistry best:",
+    "cards": {
+      "baslangic": {
+        "title": "Cannot Start Working",
+        "desc": "First momentum to break inertia and procrastination.",
+        "action": "See Techniques →"
+      },
+      "dikkat": {
+        "title": "Easily Distracted",
+        "desc": "Silencing environmental distractions and sustaining focus.",
+        "action": "See Techniques →"
+      },
+      "odaklanamama": {
+        "title": "Cannot Stay Focused",
+        "desc": "Increasing cognitive endurance and sustainability.",
+        "action": "See Techniques →"
+      },
+      "zihin": {
+        "title": "Mind is Too Cluttered",
+        "desc": "Unloading the working memory load from the prefrontal cortex.",
+        "action": "See Techniques →"
+      }
+    }
+  },
+  "adhd": {
+    "title": "ADHD: Working Techniques + Neuroscientific Hacks",
+    "tabs": {
+      "farklar": "Key Differences",
+      "calisma": "Study Techniques",
+      "hackler": "Neuroscientific Hacks"
+    },
+    "subtabs": {
+      "dehb": "ADHD Techniques",
+      "normal": "Neurotypical Techniques",
+      "ortak": "Works for Both"
+    },
+    "hackTabs": {
+      "egzersiz": "Exercise",
+      "beslenme": "Nutrition",
+      "ortam": "Environment & Structure",
+      "bilistek": "Cognitive Techniques",
+      "uyku": "Sleep"
+    },
+    "filters": {
+      "panelTitle": "Advanced Dynamic Filtering",
+      "evidence": "Evidence Level:",
+      "speed": "Effect Speed:",
+      "all": "All",
+      "allSpeed": "All",
+      "strong": "Strong Evidence Only",
+      "instant": "Instant",
+      "long": "Medium/Long Term"
+    },
+    "table": {
+      "headerSubject": "Topic",
+      "headerAdhd": "ADHD Brain",
+      "headerNormal": "Neurotypical Brain",
+      "rows": {
+        "motivasyon": {
+          "subject": "Source of motivation",
+          "adhd": "The engine does not start without interest, curiosity, urgency, or immediate reward.",
+          "normal": "Can work by visualizing future rewards and staying committed to goals."
+        },
+        "zaman": {
+          "subject": "Time perception",
+          "adhd": "\"Now\" and \"not now\" — intermediate time perception is weak.",
+          "normal": "Past, present, and future are perceived linearly and clearly."
+        },
+        "dikkat": {
+          "subject": "Attention span",
+          "adhd": "Hyperfocus (2-4 hours non-stop) or zero focus — there is no middle ground.",
+          "normal": "Moderate, sustainable, and controlled attention."
+        },
+        "calisma": {
+          "subject": "Best working block",
+          "adhd": "Short and intense sprints (15-25 mins), followed by active physical breaks.",
+          "normal": "Long and stable study blocks (45-90 mins) provide high efficiency."
+        },
+        "yapi": {
+          "subject": "Need for structure",
+          "adhd": "External structures are required (alarms, checklists, body double, etc.).",
+          "normal": "Internal discipline and plans are sufficient; external support is optional."
+        },
+        "gurultu": {
+          "subject": "Noise / environment",
+          "adhd": "Background rhythms (lofi, cafe ambient noise) support focus.",
+          "normal": "Absolute silence or light, melody-free instrumental sounds are preferred."
+        },
+        "baslama": {
+          "subject": "Task initiation",
+          "adhd": "Starting is many times harder than finishing — the first step is the greatest resistance.",
+          "normal": "Starting a task is relatively easy, procrastination loops are shorter."
+        }
+      }
+    },
+    "desc": "A comprehensive practical guide designed to understand the neurological structure of the ADHD brain, optimize the dopamine mechanism, and relieve the load on the prefrontal cortex.",
+    "crossTitle": "Cross-Connection: OCD Contrast",
+    "crossDesc": "While the ADHD brain seeks stimulation and flexibility, the OCD brain develops loops of control and certainty. To compare these two opposite neurological structures, review our OCD page.",
+    "crossAction": "→ Go to OCD Page",
+    "quickGlanceTitle": "Quick Glance Panel (Card Focus)",
+    "displayedCount": "Displayed",
+    "totalCount": "out of",
+    "healthWarning": "Important Health Warning: Nutritional supplements should be used under physician supervision and when deficiencies are detected in blood tests. They do not replace medication.",
+    "noHacksFound": "No hacks matching this category and filter combination were found. Please change the filter settings.",
+    "cognitiveHint": "Cognitive Tip",
+    "neurotypicalHint": "Neurotypical Guide",
+    "universalHint": "Universal Principles",
+    "cognitiveHintDesc": "In the ADHD brain, the core issue is not a lack of focus, but difficulty regulating dopamine levels. Techniques should help cross this chemical threshold.",
+    "neurotypicalHintDesc": "The Neurotypical Brain can gain motivation from long-term goals and future visions. The main trap: over-planning and delaying execution.",
+    "universalHintDesc": "These study principles directly enhance cognitive performance and memory consolidation in all individuals, neurotypical or ADHD alike.",
+    "solutionPrefix": "Solution"
+  },
+  "okb": {
+    "title": "OCD: Obsessive-Compulsive Disorder Guide",
+    "description": "Strategies for breaking obsession and compulsion loops, calming the brain's uncertainty alarm, and implementing ERP (Exposure and Response Prevention) protocols.",
+    "connectionTitle": "ADHD Connection: Attention vs. Hyper-Control",
+    "connectionDesc": "While the ADHD brain struggles to initiate focus due to dopamine deficits, the OCD brain hyper-focuses and gets stuck due to hyper-active error signaling.",
+    "connectionAction": "→ Go to ADHD Page",
+    "loopTitle": "How the OCD Loop Operates",
+    "loopObsessionTitle": "1. Obsession",
+    "loopObsessionDesc": "Unwanted, sudden intrusive thoughts, doubts, or distressing fears.",
+    "loopObsessionExample": "E.g.: \"What if I didn't lock the door?\"",
+    "loopAnxietyTitle": "2. Intense Anxiety",
+    "loopAnxietyDesc": "The amygdala sounds an emergency alarm, creating intense anxiety and distress.",
+    "loopAnxietyExample": "E.g.: Danger and uncertainty sensation",
+    "loopCompulsionTitle": "3. Compulsion",
+    "loopCompulsionDesc": "Repetitive physical or mental actions taken to suppress the spike in anxiety.",
+    "loopCompulsionExample": "E.g.: Going back and checking the lock repeatedly",
+    "loopReliefTitle": "4. Temporary Relief",
+    "loopReliefDesc": "Anxiety drops temporarily, but this action reinforces to the brain that the compulsion was necessary.",
+    "loopReliefExample": "Trap: Feeds the next obsession!",
+    "erpTitle": "ERP (Exposure & Response Prevention) Strategies",
+    "erpGoldenRuleTitle": "Cognitive Golden Rule:",
+    "erpGoldenRuleDesc": "When you block the compulsion, anxiety does not increase infinitely. Eventually, the brain naturally de-escalates the alarm (Habituation).",
+    "erpCard1Title": "1. Building an Anxiety Hierarchy",
+    "erpCard1Desc": "Map your triggers from 1 to 10. Begin response prevention exercises with the lowest rating to safely build momentum.",
+    "erpCard2Title": "2. Delaying the Compulsion",
+    "erpCard2Desc": "When triggered, wait 5 minutes before carrying out a compulsion. Gradually increase this delay to 15, 30, and eventually 60 minutes.",
+    "erpCard3Title": "3. Uncertainty Exposure",
+    "erpCard3Desc": "Accept that 100% certainty is a neurobiological illusion. Remind your brain: \"Maybe it is, maybe it isn't. I will tolerate this risk.\""
+  },
+  "polimatlik": {
+    "title": "Polymathy: Multidisciplinary Mastery",
+    "description": "Synthesis methods for connecting science and art fields, building T-shaped skillset profiles, and managing wide-ranging learning curiosities.",
+    "connectionTitle": "ADHD Connection: Hyperfocus & Curiosity",
+    "connectionDesc": "The ADHD brain's rapid shift in interests and divergent thinking style, when synthesized correctly, becomes a highly creative engine for polymathy.",
+    "connectionAction": "→ Go to ADHD Page",
+    "tshapedTitle": "Modern Polymath Model: T-Shaped Profile",
+    "tshapedHorizontalTitle": "Horizontal Line: Interdisciplinary Breadth",
+    "tshapedHorizontalSubtitle": "Fundamental literacy across diverse domains",
+    "tshapedHorizontalDesc": "Acquiring enough working vocabulary to form connections, cross-pollinate ideas, and collaborate with niche subject experts.",
+    "tshapedHorizontalExample": "E.g.: Basic understanding of Coding, Psychology, Design, and Finance.",
+    "tshapedVerticalTitle": "Vertical Line: Depth & Expertise",
+    "tshapedVerticalSubtitle": "World-class expertise in one core domain",
+    "tshapedVerticalDesc": "Building deep specialization in at least one field to drive value production, authority, and maintain solid professional footing.",
+    "tshapedVerticalExample": "E.g.: Senior Software Architect or Medical Doctor.",
+    "synthesisTitle": "Polymathic Study & Synthesis Strategies",
+    "synthesisGoldenRuleTitle": "Learning Axiom:",
+    "synthesisGoldenRuleDesc": "Creative leaps occur when you transplant a mental model from one domain into an entirely foreign subject.",
+    "synthesisCard1Title": "1. Project-Based Learning",
+    "synthesisCard1Desc": "Instead of purely absorbing theory, build concrete projects that merge fields. Example: Coding an interactive history database.",
+    "synthesisCard2Title": "2. Selective Focus Rotation",
+    "synthesisCard2Desc": "Avoid diluting energy across dozens of targets. Dedicate 3-month sprints to master one specific secondary domain at a time.",
+    "synthesisCard3Title": "3. Synthesis Journaling",
+    "synthesisCard3Desc": "Spend 10 minutes looking for structural similarities between two unrelated concepts you learned today, writing down analogies."
+  },
+  "footer": {
+    "visionTitle": "NeuroPortal Vision",
+    "missionTitle": "NeuroPortal Mission",
+    "vision": "To translate complex academic research and neurodevelopmental findings into practical, actionable cognitive protocols for everyone, scientifically maximizing mental potential and quality of life.",
+    "mission": "To aggregate evidence-based, ethical, and sustainable learning methodologies that cater to the unique cognitive profiles of neurodivergent brains (ADHD, OCD) and multi-disciplinary learners (Polymathy) in an open-source framework.",
+    "aboutButton": "Academic Credits & Bibliography →"
+  }
+}

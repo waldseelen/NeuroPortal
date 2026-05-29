@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DEHB: Çalışma Teknikleri + Beyin Bilimsel Hackler</title>
+<style>
+:root {
+  --gap: 14px;
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f9fafb;
+  --color-background-info: #eff6ff;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-tertiary: #6b7280;
+  --color-text-info: #1d4ed8;
+  --color-border-secondary: #d1d5db;
+  --color-border-tertiary: #e5e7eb;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-primary: #111827;
+    --color-background-secondary: #1f2937;
+    --color-background-info: #1e3a8a;
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #d1d5db;
+    --color-text-tertiary: #9ca3af;
+    --color-text-info: #bfdbfe;
+    --color-border-secondary: #4b5563;
+    --color-border-tertiary: #374151;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.wrap { padding: 1rem; font-size: 14px; max-width: 1000px; margin: 0 auto; }
+
+/* Sticky Ana Sekme Navigasyonu */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-background-primary);
+  border-bottom: 1px solid var(--color-border-tertiary);
+  padding: 8px 0;
+  margin-bottom: 1.5rem;
+}
+.tabs-nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; padding: 0; }
+.sub-tabs-nav { display: flex; gap: 6px; margin-bottom: 1.2rem; flex-wrap: wrap; }
+
+.tab-btn {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-secondary);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  transition: all .18s ease-in-out;
+}
+.tab-btn:hover { background: var(--color-background-secondary); }
+.tab-btn.active {
+  background: var(--color-background-info);
+  color: var(--color-text-info);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.25s ease; }
+.sub-tab-content { display: none; }
+.sub-tab-content.active { display: block; animation: fadeIn 0.25s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Yol Haritası (Onboarding Flow) */
+.onboarding-box {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  margin-bottom: 1.5rem;
+}
+.onboarding-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.onboarding-desc {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.onboarding-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+.onboarding-card {
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.onboarding-card:hover {
+  border-color: var(--color-text-info);
+  transform: translateY(-1px);
+}
+.onboarding-card-action {
+  color: var(--color-text-info);
+  font-size: 11px;
+  margin-top: 6px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Hızlı Bakış (Quick Glance) ve Filtreler */
+.filter-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1rem;
+  padding: 10px;
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border-tertiary);
+}
+.filter-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+}
+.filter-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-secondary);
+  background: var(--color-background-primary);
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.15s ease;
+}
+.filter-btn.active {
+  background: var(--color-text-info);
+  color: white;
+  border-color: transparent;
+}
+.quick-glance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+.quick-glance-item {
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  padding: 8px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.quick-glance-item:hover {
+  border-color: var(--color-text-info);
+  background: var(--color-background-info);
+}
+.quick-glance-title {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+/* Çapraz Referans (Cross-Reference) Rozetleri */
+.cross-ref-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--color-background-info);
+  color: var(--color-text-info);
+  border: 1px solid rgba(29, 78, 216, 0.15);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Kart Yapıları */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.card {
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-tertiary);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-body {
+  flex-grow: 1;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hack Kartları */
+.hack-card {
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 18px;
+  margin-bottom: 14px;
+  background: var(--color-background-secondary);
+  transition: all 0.2s ease;
+}
+.hack-card.hidden { display: none !important; }
+.hack-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.hack-title { font-weight: 600; font-size: 14px; color: var(--color-text-primary); }
+.hack-mech { font-size: 12px; color: var(--color-text-secondary); margin-top: 3px; line-height: 1.5; }
+
+/* Collapse/Expand Alanları */
+.collapsible-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--color-text-info);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-top: 8px;
+}
+.collapsible-trigger svg {
+  transition: transform 0.2s ease;
+}
+.collapsible-trigger.expanded svg {
+  transform: rotate(180s);
+}
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s cubic-bezier(0, 1, 0, 1);
+}
+.collapsible-content.expanded {
+  max-height: 2000px;
+  transition: max-height 0.25s cubic-bezier(1, 0, 1, 0);
+}
+
+/* Rozetler ve Etiketler */
+.badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; font-weight: 400; }
+.badge-purple { background: #EEEDFE; color: #3C3489; }
+.badge-teal { background: #E1F5EE; color: #0F6E56; }
+.b-green { background: #EAF3DE; color: #27500A; }
+.b-amber { background: #FAEEDA; color: #633806; }
+.b-red { background: #FCEBEB; color: #791F1F; }
+.b-purple { background: #EEEDFE; color: #3C3489; }
+.b-blue { background: #E6F1FB; color: #0C447C; }
+.b-teal { background: #E1F5EE; color: #085041; }
+
+@media (prefers-color-scheme: dark) {
+  .badge-purple { background: #3C3489; color: #CECBF6; }
+  .badge-teal { background: #085041; color: #9FE1CB; }
+  .b-green { background: #173404; color: #C0DD97; }
+  .b-amber { background: #412402; color: #FAC775; }
+  .b-red { background: #501313; color: #F7C1C1; }
+  .b-purple { background: #26215C; color: #CECBF6; }
+  .b-blue { background: #042C53; color: #B5D4F4; }
+  .b-teal { background: #04342C; color: #9FE1CB; }
+}
+
+/* Listeler */
+ul { margin: 0; padding-left: 16px; }
+li { margin-bottom: 6px; color: var(--color-text-secondary); font-size: 13px; line-height: 1.5; }
+.steps { margin: 0; padding: 0; list-style: none; }
+.steps li { padding: 7px 0; border-bottom: 1px solid var(--color-border-tertiary); color: var(--color-text-secondary); font-size: 13px; line-height: 1.5; display: flex; gap: 8px; }
+.steps li:last-child { border-bottom: none; }
+.step-num { font-weight: 500; color: var(--color-text-tertiary); min-width: 18px; }
+
+/* Tablolar */
+.row-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; background: var(--color-background-secondary); border-radius: var(--border-radius-lg); overflow: hidden; }
+.row-table th { text-align: left; padding: 8px 10px; color: var(--color-text-tertiary); font-weight: 500; border-bottom: 1px solid var(--color-border-tertiary); background: var(--color-background-primary); }
+.row-table td { padding: 10px 10px; border-bottom: 1px solid var(--color-border-tertiary); color: var(--color-text-secondary); vertical-align: top; line-height: 1.5; }
+.row-table tr:last-child td { border-bottom: none; }
+
+/* Bilgi Kutuları */
+.tip-box { background: var(--color-background-info); border-radius: var(--border-radius-md); padding: 12px 14px; margin-bottom: 14px; color: var(--color-text-info); font-size: 13px; border: 1px solid var(--color-border-tertiary); }
+.warn-box { background: #FAEEDA; border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: #633806; margin-bottom: 14px; border: 1px solid var(--color-border-tertiary); }
+@media (prefers-color-scheme: dark) { .warn-box { background: #412402; color: #FAC775; border-color: #633806; } }
+
+.tag { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 4px; margin-right: 4px; }
+.t-red { background: #FCEBEB; color: #791F1F; }
+.t-green { background: #EAF3DE; color: #27500A; }
+@media (prefers-color-scheme: dark) {
+  .t-red { background: #501313; color: #F7C1C1; }
+  .t-green { background: #173404; color: #C0DD97; }
+}
+
+.source { font-size: 11px; color: var(--color-text-tertiary); margin-top: 8px; border-top: 1px solid var(--color-border-tertiary); padding-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- INTERAKTIF YOL HARİTASI (ONBOARDING FLOW) -->
+  <div class="onboarding-box">
+    <div class="onboarding-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+      Nereden Başlamalıyım? (Kişisel Yol Haritası)
+    </div>
+    <div class="onboarding-desc">Şu anda sizi en çok zorlayan durumu seçin; beyin kimyanıza en uygun adımlara doğrudan yönlendirileceksiniz:</div>
+    <div class="onboarding-grid">
+      <div class="onboarding-card" onclick="triggerOnboarding('baslangic')">
+        <div>🚀 Çalışmaya Başlayamıyorum</div>
+        <div class="onboarding-desc" style="margin:4px 0 0; font-size:11px;">Eylemsizlik ve ertelemeyi kırmak için ilk ivme.</div>
+        <div class="onboarding-card-action">Teknikleri Gör &rarr;</div>
+      </div>
+      <div class="onboarding-card" onclick="triggerOnboarding('dikkat')">
+        <div>🎯 Dikkatim Çok Kolay Dağılıyor</div>
+        <div class="onboarding-desc" style="margin:4px 0 0; font-size:11px;">Çevresel uyaranları susturup odaklanmayı sürdürmek.</div>
+        <div class="onboarding-card-action">Teknikleri Gör &rarr;</div>
+      </div>
+      <div class="onboarding-card" onclick="triggerOnboarding('odaklanamama')">
+        <div>⏳ Odakta Kalamıyorum</div>
+        <div class="onboarding-desc" style="margin:4px 0 0; font-size:11px;">Bilişsel dayanıklılığı artırmak ve sürdürülebilirlik.</div>
+        <div class="onboarding-card-action">Teknikleri Gör &rarr;</div>
+      </div>
+      <div class="onboarding-card" onclick="triggerOnboarding('zihin')">
+        <div>🌀 Zihnim Aşırı Dağınık</div>
+        <div class="onboarding-desc" style="margin:4px 0 0; font-size:11px;">Prefrontal korteksin üzerindeki çalışma belleği yükünü boşaltmak.</div>
+        <div class="onboarding-card-action">Teknikleri Gör &rarr;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY HEADER VE ANA SEKMELER -->
+  <div class="sticky-header">
+    <div class="tabs-nav" id="mainTabNav">
+      <button class="tab-btn active" data-target="tab-farklar">Temel Farklar</button>
+      <button class="tab-btn" data-target="tab-calisma">Çalışma Teknikleri</button>
+      <button class="tab-btn" data-target="tab-hackler">Beyin Bilimsel Hackler</button>
+    </div>
+  </div>
+
+  <!-- SEKME 1: TEMEL FARKLAR -->
+  <div id="tab-farklar" class="tab-content active">
+    <table class="row-table">
+      <tr>
+        <th style="width:30%">Konu</th>
+        <th style="width:35%">🟣 DEHB beyni</th>
+        <th style="width:35%">🟢 Nörotipikal beyin</th>
+      </tr>
+      <tr>
+        <td><strong>Motivasyon kaynağı</strong></td>
+        <td>İlgi, merak, aciliyet veya ödül olmadan motor çalışmaz</td>
+        <td>Gelecekteki ödülü hayal ederek çalışabilir</td>
+      </tr>
+      <tr>
+        <td><strong>Zaman algısı</strong></td>
+        <td>"Şimdi" ve "şimdi değil" — ara zaman yok</td>
+        <td>Geçmiş, şimdi, gelecek net biçimde hissedilir</td>
+      </tr>
+      <tr>
+        <td><strong>Dikkat süresi</strong></td>
+        <td>Hiperfokus (2-4 saat) veya hiç yok — orta yok</td>
+        <td>Orta düzeyde, sürdürülebilir dikkat</td>
+      </tr>
+      <tr>
+        <td><strong>En iyi çalışma süresi</strong></td>
+        <td>Kısa patlama (15-25 dk), sonra zorunlu mola</td>
+        <td>Uzun blok (45-90 dk) verimlilik sağlar</td>
+      </tr>
+      <tr>
+        <td><strong>Yapı ihtiyacı</strong></td>
+        <td>Dışarıdan yapı gerek (alarm, liste, ortam)</td>
+        <td>İç yapı yeterli; dışsal destek isteğe bağlı</td>
+      </tr>
+      <tr>
+        <td><strong>Gürültü / ortam</strong></td>
+        <td>Arkaplan sesi (lofi, kafe) bazen odaklanmayı artırır</td>
+        <td>Sessizlik veya hafif müzik genellikle tercih edilir</td>
+      </tr>
+      <tr>
+        <td><strong>Görev başlama</strong></td>
+        <td>Başlamak bitmekten zor — ilk adım en kritik</td>
+        <td>Başlamak görece kolay, erteleme daha az yaygın</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- SEKME 2: ÇALIŞMA TEKNİKLERİ -->
+  <div id="tab-calisma" class="tab-content">
+    <div class="sub-tabs-nav" data-parent="tab-calisma">
+      <button class="tab-btn active" data-target="sub-calisma-dehb">DEHB teknikleri</button>
+      <button class="tab-btn" data-target="sub-calisma-normal">Nörotipikal teknikler</button>
+      <button class="tab-btn" data-target="sub-calisma-ortak">İkisi için de işe yarar</button>
+    </div>
+
+    <!-- ALT SEKME: DEHB TEKNİKLERİ -->
+    <div id="sub-calisma-dehb" class="sub-tab-content active">
+      <div class="tip-box">DEHB beyninde sorun odaklanamamak değil, dopamini düzenleme güçlüğüdür. Teknikler bunu gözetmeli.</div>
+      <div class="grid2">
+        <div class="card" id="calisma-mikrosprint">
+          <div class="card-body">
+            <div class="card-title"><span class="badge badge-purple">Zaman</span> Pomodoro değil, mikro-sprint</div>
+            <ul>
+              <li><strong>15-20 dk çalış</strong>, 5 dk kesin mola</li>
+              <li>Zamanlayıcı görünür ve sesli olsun</li>
+              <li>Molada ekran yok — fiziksel hareket</li>
+              <li>Klasik 25 dk bazen çok uzun gelebilir</li>
+            </ul>
+          </div>
+          <div><span class="cross-ref-tag">🎯 Çözüm: En iyi çalışma süresi / Zaman algısı</span></div>
+        </div>
+        <div class="card" id="calisma-discapa">
+          <div class="card-body">
+            <div class="card-title"><span class="badge badge-purple">Yapı</span> Dışsal çapa noktaları</div>
+            <ul>
+              <li>Her oturum için tek görev listesi</li>
+              <li>Çalışma arkadaşı / body double</li>
+              <li>"Ne yapacağım?" değil "Neyle başlıyorum?" sor</li>
+              <li>Fiziksel to-do (yapışkan not, beyaz tahta)</li>
+            </ul>
+          </div>
+          <div><span class="cross-ref-tag">🎯 Çözüm: Yapı ihtiyacı</span></div>
+        </div>
+        <div class="card" id="calisma-anlikodul">
+          <div class="card-body">
+            <div class="card-title"><span class="badge badge-purple">Dopamin</span> Anında ödül döngüsü</div>
+            <ul>
+              <li>Her küçük adım sonrası görsel işaret (tik at!)</li>
+              <li>Konuyu oyunlaştır: süre rekoru kır</li>
+              <li>İlgi çekici formatla başla (video → metin)</li>
+              <li>Görevi seninle yarışan biriyle yap</li>
+            </ul>
+          </div>
+          <div><span class="cross-ref-tag">🎯 Çözüm: Motivasyon kaynağı</span></div>
+        </div>
+        <div class="card" id="calisma-uyarimdengesi">
+          <div class="card-body">
+            <div class="card-title"><span class="badge badge-purple">Ortam</span> Uyarım dengesi</div>
+            <ul>
+              <li>Lofi / beyaz gürültü / kafe sesi dene</li>
+              <li>Standart bir "çalışma kıyafeti" ritüeli</li>
+              <li>Telefonu başka odaya koy, değil masaüstüne</li>
+              <li>Ayakta masa veya hareket izni olan ortam</li>
+            </ul>
+          </div>
+          <div><span class="cross-ref-tag">🎯 Çözüm: Gürültü / ortam</span></div>
+        </div>
+        <div class="card" id="calisma-aktifcikti">
+          <div class="card-body">
+            <div class="card-title"><span class="badge badge-purple">Öğrenme</span> Aktif çıktı odaklı</div>
+            <ul>
+              <li>Not al → öğretir gibi yeniden anlat</li>
+              <li>Mind map ile konuyu görselleştir</li>
+              <li>Sesli düşün, kayıt al, sonra dinle</li>
+              <li>Pasif okuma yerine sorulu çalışma</li>
+            </ul>
+          </div>
+          <div><span class="cross-ref-tag">🎯 Çözüm: Dikkat süresi</span></div>
+        </div>
+        <div class="card" id="calisma-ilk2dk">
+          <div class="card-body">
+            <div class="card-title"><span class="badge badge-purple">Başlangıç</span> İlk 2 dakika kuralı</div>
+            <ul>
+              <li>Sadece 2 dk yap, istersen bırak — başlat</li>
+              <li>En kolay görevle başla (ivme yakala)</li>
+              <li>Görev belirsizse önce sadece tanımla</li>
+              <li>Alarm = başlama sinyali, tereddüt yok</li>
+            </ul>
+          </div>
+          <div><span class="cross-ref-tag">🎯 Çözüm: Görev başlama</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT SEKME: NÖROTİPİKAL TEKNİKLER -->
+    <div id="sub-calisma-normal" class="sub-tab-content">
+      <div class="tip-box">Nörotipikal beyin uzun vadeli hedeflerden motivasyon alabilir. Asıl tuzak: aşırı planlama ve verimlilik yanılsaması.</div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title"><span class="badge badge-teal">Zaman</span> Deep work blokları</div>
+          <ul>
+            <li>45-90 dk kesintisiz çalışma blokları</li>
+            <li>Sabah ilk saatler en derin iş için</li>
+            <li>Haftalık "deep work" saat hedefi tut</li>
+            <li>Pomodoro 25+5 klasik versiyonu işe yarar</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge badge-teal">Planlama</span> Haftalık ve günlük sistem</div>
+          <ul>
+            <li>Pazar akşamı haftalık review + plan</li>
+            <li>Her akşam ertesi günün 3 önceliği</li>
+            <li>Zaman bloklama (takvime görev yaz)</li>
+            <li>Büyük hedefi geri al — bugünkü adım nedir?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge badge-teal">Öğrenme</span> Spaced repetition</div>
+          <ul>
+            <li>Anki / flashcard ile aralıklı tekrar</li>
+            <li>Cornell not yöntemi</li>
+            <li>Okuduğunu 24 saat sonra özetle</li>
+            <li>Test kendine — boşluk doldurun tekrarlama</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge badge-teal">Ortam</span> Sessizlik ve tek uyarım</div>
+          <ul>
+            <li>Sessiz ortam veya enstrümantal müzik</li>
+            <li>Tek sekme, tek görev kuralı</li>
+            <li>Bildirimler tamamen kapat</li>
+            <li>Düzenli, sabit bir çalışma köşesi</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge badge-teal">Motivasyon</span> Uzun vadeli bağlantı</div>
+          <ul>
+            <li>Neden öğrendiğini yaz, görünür yere koy</li>
+            <li>İlerleme günlüğü tut (momentum hissi)</li>
+            <li>Haftalık küçük ödül sistemi</li>
+            <li>Gruba katıl / hesap verebilirlik partneri</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="badge badge-teal">Tuzaklar</span> Kaçınılması gerekenler</div>
+          <ul>
+            <li><span class="tag t-red">✗</span> Verimli hissetmek = verimli olmak değil</li>
+            <li><span class="tag t-red">✗</span> Mükemmel plan yapmak yerine başlamak</li>
+            <li><span class="tag t-red">✗</span> Konuyu tekrar okumak = öğrenmek değil</li>
+            <li><span class="tag t-red">✗</span> Çok uzun seans → verim düşer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT SEKME: ORTAK TEKNİKLER -->
+    <div id="sub-calisma-ortak" class="sub-tab-content">
+      <div class="tip-box">Bu prensipler nörotipikal veya DEHB fark etmeksizin bilişsel performansı artırır.</div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-title">Uyku & beden</div>
+          <ul>
+            <li>7-9 saat uyku — konsolidasyon uykuda olur</li>
+            <li>Egzersiz → dopamin + BDNF → odak artışı</li>
+            <li>Çalışmadan önce kısa yürüyüş</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Aktif geri çağırma</div>
+          <ul>
+            <li>Öğrendikten sonra kitabı kapat ve anlat</li>
+            <li>Soru üret, kendin cevapla</li>
+            <li>Pasif okuma yerine her zaman test et</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Tek görev kuralı</div>
+          <ul>
+            <li>Multitasking her iki beyin tipinde de verimsiz</li>
+            <li>Tab sayısını 3 ile sınırla</li>
+            <li>Telefonu görüş alanından çıkar</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Zorluk seviyesi</div>
+          <ul>
+            <li>Çok kolay → sıkılma, çok zor → panik</li>
+            <li>Flow bölgesi: biraz zor ama yapılabilir</li>
+            <li>Görevi böl ya da zorlaştır — sıkışma işareti</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Öğretir gibi anlat</div>
+          <ul>
+            <li>Feynman tekniği: 12 yaşına anlat</li>
+            <li>Anlatamadığın yer = gerçek bilgi boşluğu</li>
+            <li>Sesli açıklama veya blog yaz</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Düzenli mola</div>
+          <ul>
+            <li>Ekrandan uzak, fiziksel mola</li>
+            <li>Nefes / kısa meditasyon çalışma hafızasını yeniler</li>
+            <li>Öğle uykusu (20 dk) performansı belirgin artırır</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEKME 3: BEYİN BİLİMSEL HACKLER -->
+  <div id="tab-hackler" class="tab-content">
+    <div class="sub-tabs-nav" data-parent="tab-hackler" id="hackTabNav">
+      <button class="tab-btn active" data-target="sub-hack-egzersiz">Egzersiz</button>
+      <button class="tab-btn" data-target="sub-hack-beslenme">Beslenme</button>
+      <button class="tab-btn" data-target="sub-hack-ortam">Ortam & yapı</button>
+      <button class="tab-btn" data-target="sub-hack-bilistek">Bilişsel teknikler</button>
+      <button class="tab-btn" data-target="sub-hack-uyku">Uyku</button>
+    </div>
+
+    <!-- FILTRELEME VE DASHBOARD PANELI -->
+    <div class="filter-panel">
+      <div class="filter-group">
+        <span class="filter-label">Kanıt Seviyesi:</span>
+        <button class="filter-btn active" onclick="applyFilters('evidence', 'all')">Hepsi</button>
+        <button class="filter-btn" onclick="applyFilters('evidence', 'strong')">Yalnızca Güçlü Kanıtlar</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Etki Hızı:</span>
+        <button class="filter-btn active" onclick="applyFilters('speed', 'all')">Tümü</button>
+        <button class="filter-btn" onclick="applyFilters('speed', 'aninda')">⏱️ Anında</button>
+        <button class="filter-btn" onclick="applyFilters('speed', 'orta-uzun')">🌀 Orta/Uzun Vadeli</button>
+      </div>
+    </div>
+
+    <!-- HIZLI BAKIŞ (QUICK GLANCE) PANELI -->
+    <div class="quick-glance-grid" id="quickGlanceContainer">
+      <!-- JavaScript tarafından dinamik olarak yüklenecektir -->
+    </div>
+
+    <!-- ALT SEKME: EGZERSİZ -->
+    <div id="sub-hack-egzersiz" class="sub-tab-content active">
+      <div class="hack-card" data-evidence="strong" data-speed="aninda" id="hack-aerobik">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Aerobik egzersiz — dopamin & norepinefrin fırlatıcı</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-green">Çok güçlü kanıt</span>
+              <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+              <span class="badge b-purple">Yürütücü işlev ↑</span>
+              <span class="badge b-blue">İnhibisyon kontrolü ↑</span>
+              <span class="badge b-teal">Çalışma belleği ↑</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">Egzersiz, beyin sapından prefrontal kortekse dopamin ve norepinefrin salmayı artırır — stimülan ilaçların etki mekanizmasıyla örtüşür. Ayrıca BDNF salgılar; bu "beyin gübresi" yeni sinir bağlantılarının kurulmasını sağlar.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Günde 20-30 dk orta yoğunlukta aerobik (kalp hızı %60-80) — haftada en az 3 gün</li>
+            <li><span class="step-num">2</span>Çalışmadan önce 10-15 dk koşu → o gün için odak kalitesi belirgin artar</li>
+            <li><span class="step-num">3</span>Top sporları (basketbol, futbol) tek aerobikten daha etkili — çift görev (kognitif + motor)</li>
+            <li><span class="step-num">4</span>BDNF için minimum 40 dk ve %80 kalp hızı gerekli — kısa seans yetersiz kalabilir</li>
+          </ul>
+          <div class="source">Kaynak: PMC12398161 · PMC11907377 · Frontiers in Psychology 2024 · 16 RCT meta-analizi</div>
+        </div>
+      </div>
+      <div class="hack-card" data-evidence="medium" data-speed="orta-uzun" id="hack-zihinbeden">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Zihin-beden egzersizi (yoga, tai chi)</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-amber">Orta kanıt</span>
+              <span class="badge b-purple">⏳ Orta Vadeli (Haftalar)</span>
+              <span class="badge b-purple">Dikkat ↑</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">Dikkat süreçleri üzerinde ölçülebilir etki var; ancak yürütücü işlev ve hiperaktivite üzerinde etkisi aerobikten zayıf.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Yoga: en çok çalışılan — haftada 2-3 seans minimum 6 hafta</li>
+            <li><span class="step-num">2</span>Aerobikle kombine edilirse etkisi artar</li>
+            <li><span class="step-num">3</span>Tek başına yürütücü işlev üzerinde güçlü kanıt yok</li>
+          </ul>
+          <div class="source">Kaynak: Frontiers in Psychiatry 2024 · 7 RCT meta-analizi</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT SEKME: BESLENME -->
+    <div id="sub-hack-beslenme" class="sub-tab-content">
+      <div class="warn-box">Beslenme desteği ilaç yerine değil, tamamlayıcı olarak düşünmeli. Eksik görülen besinler önce kan testiyle doğrulanmalı.</div>
+      <div class="hack-card" data-evidence="strong" data-speed="orta-uzun" id="hack-omega3">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Omega-3 (EPA + DHA) — nöron zarı sağlığı</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-green">Güçlü kanıt (dikkat için)</span>
+              <span class="badge b-amber">Zayıf kanıt (hiperaktivite için)</span>
+              <span class="badge b-teal">🌀 Uzun Vadeli (Aylar)</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">DEHB'li bireylerin omega-3 kan seviyeleri kontrol grubuna göre ortalama %38 daha düşük. Omega-3, nöron zarı akışkanlığını artırarak dopamin ve norepinefrin salınımını iyileştirir. EPA ve DHA, serotonerjik ve dopaminerjik işlevi doğrudan etkiler.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Günlük 650 mg EPA + 650 mg DHA etkili doz olarak RCT'lerde test edilmiş</li>
+            <li><span class="step-num">2</span>Dikkat eksikliği belirtilerinde en tutarlı sonuç — hiperaktivite için sonuçlar karışık</li>
+            <li><span class="step-num">3</span>Somon, uskumru, sardalya → haftada 2-3 porsiyon veya balık yağı takviyesi</li>
+            <li><span class="step-num">4</span>Omega-6/omega-3 oranını düşür — işlenmiş yağ tüketimini azalt</li>
+          </ul>
+          <div class="source">Kaynak: Nature Neuropsychopharmacology 2015 · ScienceDirect meta-analiz (16 çalışma, n=1408) · Frontiers Nutrition 2025</div>
+        </div>
+      </div>
+      <div class="grid2" style="margin-bottom: 14px;">
+        <div class="hack-card" data-evidence="medium" data-speed="orta-uzun" id="hack-demir" style="margin-bottom:0;">
+          <div class="hack-title">Demir (ferritin)</div>
+          <div class="badge-row" style="margin: 6px 0;">
+            <span class="badge b-amber">Orta-güçlü kanıt</span>
+            <span class="badge b-purple">⏳ Orta Vadeli (Haftalar)</span>
+          </div>
+          <button class="collapsible-trigger" onclick="toggleCard(this)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            Detayları Göster
+          </button>
+          <div class="collapsible-content">
+            <div class="hack-mech" style="margin:6px 0 10px">Ferritin dopamin sentezi için zorunlu kofaktör. Düşük ferritin → dopamin yolak bozukluğu.</div>
+            <ul class="steps">
+              <li><span class="step-num">→</span>Serum demir değil, ferritin ölç (çoğunlukla yanlış test isteniyor)</li>
+              <li><span class="step-num">→</span>Kırmızı et, mercimek, ıspanak</li>
+            </ul>
+            <div class="source">Kaynak: The Conversation 2024</div>
+          </div>
+        </div>
+        <div class="hack-card" data-evidence="medium" data-speed="orta-uzun" id="hack-magnezyum" style="margin-bottom:0;">
+          <div class="hack-title">Magnezyum & Çinko & B6</div>
+          <div class="badge-row" style="margin: 6px 0;">
+            <span class="badge b-amber">Orta kanıt</span>
+            <span class="badge b-purple">⏳ Orta Vadeli (Haftalar)</span>
+          </div>
+          <button class="collapsible-trigger" onclick="toggleCard(this)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            Detayları Göster
+          </button>
+          <div class="collapsible-content">
+            <div class="hack-mech" style="margin:6px 0 10px">B6, dopamin sentez enzimleri için koenzim. Çinko, dopamin reseptör yoğunluğunu etkiler. DEHB'li çocuklarda bu besinlerde tutarlı eksiklik gözlemleniyor.</div>
+            <ul class="steps">
+              <li><span class="step-num">→</span>Klinik testlerle eksiklik doğrula</li>
+              <li><span class="step-num">→</span>Takviye + ilaç kombinasyonu en iyi sonucu veriyor</li>
+            </ul>
+            <div class="source">Kaynak: Frontiers Nutrition 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="hack-card" data-evidence="medium" data-speed="orta-uzun" id="hack-dvit">
+        <div class="hack-title">D Vitamini</div>
+        <div class="badge-row" style="margin: 6px 0;">
+          <span class="badge b-amber">Orta kanıt</span>
+          <span class="badge b-teal">🌀 Uzun Vadeli (Aylar)</span>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech" style="margin:6px 0 10px">DEHB tanılı çocuklarda D vitamini kan seviyeleri tutarlı biçimde düşük. D vitamini, dopamin reseptörlerinin ekspresyonunu düzenler ve nöroinflamasyonu azaltır.</div>
+          <ul class="steps">
+            <li><span class="step-num">→</span>Özellikle kış ayları veya güneş maruziyeti düşükse kontrol ettir</li>
+          </ul>
+          <div class="source">Kaynak: The Conversation 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT SEKME: ORTAM & YAPI -->
+    <div id="sub-hack-ortam" class="sub-tab-content">
+      <div class="hack-card" data-evidence="strong" data-speed="aninda" id="hack-bodydouble">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Body doubling (çalışma arkadaşı varlığı)</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-green">Klinik gözlem + nörogörüntüleme</span>
+              <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+              <span class="badge b-purple">En hızlı etkili hack</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">Başka birinin fiziksel veya sanal varlığı, DEHB beyninde sosyal izleme sistemini aktive eder. Bu, anterior singulat korteks aktivasyonunu artırarak dikkat süresini uzatır. Kişinin seni izlemesine veya aynı şeyi yapmasına gerek yok.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Kahvehane, kütüphane veya sanal "study with me" oturumları eşit etkili</li>
+            <li><span class="step-num">2</span>YouTube "study with me" videoları da işe yarar — gerçek olmasa da vizüel sosyal uyaran yeterli</li>
+            <li><span class="step-num">3</span>Focusmate, Flow.club — body double platformları</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack-card" data-evidence="medium" data-speed="aninda" id="hack-gurultu">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Arka plan gürültüsü (stokastik rezonans)</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-amber">Orta kanıt</span>
+              <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+              <span class="badge b-blue">Bireysel varyasyon yüksek</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">DEHB beyninde korteks uyarım eşiği daha yüksek. Orta düzey beyaz gürültü veya kahvehane sesi (~65-70 dB), sinyal/gürültü oranını artırarak prefrontal korteks aktivasyonunu iyileştirir — sessizlik paradoks olarak daha az odaklatır.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Lofi, beyaz gürültü, yağmur sesi, kahvehane ambiyansı dene</li>
+            <li><span class="step-num">2</span>Sözlü müzik → çalışma belleğini işgal eder, çalışmada zararlı</li>
+            <li><span class="step-num">3</span>~65 dB ideal — çok yüksek veya çok sessiz verimsiz</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hack-card" data-evidence="strong" data-speed="aninda" id="hack-zamanlayici">
+        <div class="hack-title">Zamanlayıcı görünürlüğü (zaman körleştirme karşı önlemi)</div>
+        <div class="badge-row" style="margin: 6px 0;">
+          <span class="badge b-green">Güçlü nörobiyolojik dayanak</span>
+          <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech" style="margin:6px 0 10px">DEHB'de zaman algısı sistemi (baz ganglionlar + serebellar döngüler) atipik çalışır. Zaman, "şimdi" ve "şimdi değil" olarak ikiye bölünür. Görünür zamanlayıcı, harici zaman bilinci yaratarak bu eksikliği kapatır.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Time Timer (görsel dolum azalan saat) — sayısal saatten daha etkili</li>
+            <li><span class="step-num">2</span>Telefon ekranı yerine fiziksel zamanlayıcı → dikkat dağılmasını engeller</li>
+            <li><span class="step-num">3</span>Çalışma seansını 15-25 dk ile başlat, uzat</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT SEKME: BİLİŞSEL TEKNİKLER -->
+    <div id="sub-hack-bilistek" class="sub-tab-content">
+      <div class="hack-card" data-evidence="strong" data-speed="aninda" id="hack-anlikodul">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Anında ödül döngüsü (dopamin hızlandırıcı)</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-green">Güçlü dopamin nörobiyolojisi</span>
+              <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+              <span class="badge b-purple">Reinforcement learning modeli</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">DEHB'de tonic dopamin düşük, phasic (ani) dopamin yanıtları abartılı. Bu, küçük ve anlık ödüllere aşırı hassasiyet yaratır. Sistemi tersine kullan: küçük adımlara anlık görünür ödül bağla.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Fiziksel tik listesi — her adım için elle çiz, dopamin salgısı tetikler</li>
+            <li><span class="step-num">2</span>Göreve ilgi yok mu? "İlginç bul" değil "yarış formatına sok" — süre rekoru, puan</li>
+            <li><span class="step-num">3</span>Görevi bitirince anlık küçük ödül planla — gelecek ödül DEHB beynini harekete geçirmiyor</li>
+            <li><span class="step-num">4</span>Belirsiz görev → küçük somut parçalara böl, her parça kendi ödül döngüsü</li>
+          </ul>
+          <div class="source">Kaynak: Frontiers Comp. Neuroscience 2022 · dopamin phasic/tonic imbalance modeli</div>
+        </div>
+      </div>
+      <div class="hack-card" data-evidence="strong" data-speed="aninda" id="hack-disbellek">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Dışsal çalışma belleği (bilişsel yük azaltma)</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-green">Güçlü nörobilişsel dayanak</span>
+              <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">DEHB'de prefrontal korteks → çalışma belleği bağlantısı zayıf. Zihinsel tutma kapasitesi düşük. Sistemi dışarıya taşı: beyin yerine kağıt, ekran veya ses tutacak.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Her düşünce → anında bir yere yaz, kafanda tutmaya çalışma</li>
+            <li><span class="step-num">2</span>Günün tek görev listesi — 3 madde max, başka listeye bakma</li>
+            <li><span class="step-num">3</span>Sesli düşün, kaydet → sonra dinle (ses → dışsal bellek)</li>
+            <li><span class="step-num">4</span>Mind map ile kavramları kağıda çiz — görsel çalışma belleği daha güçlü</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="hack-card" data-evidence="medium" data-speed="aninda" id="hack-ilk2dk">
+          <div class="hack-title">İlk 2 dakika kuralı</div>
+          <div class="badge-row" style="margin: 6px 0;">
+            <span class="badge b-amber">Güçlü klinik dayanak</span>
+            <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+          </div>
+          <button class="collapsible-trigger" onclick="toggleCard(this)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            Detayları Göster
+          </button>
+          <div class="collapsible-content">
+            <div class="hack-mech" style="margin:6px 0 10px">DEHB'de görev başlatma, tamamlamaktan bağımsız bir yürütücü işlev zorluğudur. Amigdala, büyük görevleri tehdit olarak işler. Mikro-hedef bu yanıtı bypass eder.</div>
+            <ul class="steps">
+              <li><span class="step-num">→</span>"Sadece başla, 2 dk yap, bırakabilirsin"</li>
+              <li><span class="step-num">→</span>Alarm = başlat — düşünme zamanı yok</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hack-card" data-evidence="strong" data-speed="aninda" id="hack-aktifgericagirma">
+          <div class="hack-title">Aktif geri çağırma</div>
+          <div class="badge-row" style="margin: 6px 0;">
+            <span class="badge b-green">En güçlü öğrenme kanıtı</span>
+            <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+          </div>
+          <button class="collapsible-trigger" onclick="toggleCard(this)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            Detayları Göster
+          </button>
+          <div class="collapsible-content">
+            <div class="hack-mech" style="margin:6px 0 10px">Pasif okuma DEHB beyninde çok az iz bırakır. Aktif geri çağırma, hipokampal konsolidasyonu artırır ve çalışma belleği kapasitesini zorlar — bu her iki beyin için de en güçlü öğrenme tekniği.</div>
+            <ul class="steps">
+              <li><span class="step-num">→</span>Kitabı kapat → anlat → geri aç, kontrol et</li>
+              <li><span class="step-num">→</span>Anki flash kart sistemi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT SEKME: UYKU -->
+    <div id="sub-hack-uyku" class="sub-tab-content">
+      <div class="hack-card" data-evidence="strong" data-speed="aninda" id="hack-uykubaz">
+        <div class="hack-head">
+          <div>
+            <div class="hack-title">Uyku — DEHB beyninin en kritik temeli</div>
+            <div class="badge-row" style="margin-top:6px;">
+              <span class="badge b-green">Kritik altyapı</span>
+              <span class="badge b-red">Eksikliği tüm teknikleri geçersiz kılar</span>
+              <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+            </div>
+          </div>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech">DEHB'de uyku sorunları hastalığın parçası: melatonin salınımı 1-1.5 saat daha geç başlar (sirkadiyen faz gecikmesi). Uyku eksikliği, prefrontal korteks işlevini doğrudan bozar — yetersiz uyku DEHB belirtilerini %40'a kadar kötüleştirebilir. Aynı zamanda uyku sırasında dopamin reseptörleri resetlenir.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>DEHB'de uyku apnesi yaygın — horlama veya gece uyanma varsa test yaptır</li>
+            <li><span class="step-num">2</span>Melatonin gecikmesi için: akşam 9-10'dan itibaren mavi ışık filtresi veya sarı gözlük</li>
+            <li><span class="step-num">3</span>Yatma vakti ritüeli DEHB beyninde kendi kendine oluşmuyor — dışarıdan alarm kur</li>
+            <li><span class="step-num">4</span>Uyku saati uyarım ihtiyacından dolayı uzuyor mu? Ekranı yatak odası dışında şarj et</li>
+            <li><span class="step-num">5</span>20 dakika öğle uykusu → öğleden sonra yürütücü işlev belirgin iyileşiyor</li>
+          </ul>
+          <div class="source">Kaynak: ADHD brains present unique challenges — The Conversation 2024</div>
+        </div>
+      </div>
+      <div class="hack-card" data-evidence="medium" data-speed="aninda" id="hack-sabahru">
+        <div class="hack-title">Sabah rutini — dopamin motorunu çalıştır</div>
+        <div class="badge-row" style="margin: 6px 0;">
+          <span class="badge b-amber">Klinik öneri + biyolojik dayanak</span>
+          <span class="badge b-blue">⏱️ Anında (Bugün)</span>
+        </div>
+        <button class="collapsible-trigger" onclick="toggleCard(this)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          Mekanizma ve Adımları Göster
+        </button>
+        <div class="collapsible-content">
+          <div class="hack-mech" style="margin:6px 0 10px">DEHB beyninde sabah kortizol dalgası daha düz. Motor başlatmak için harici uyarım gerekli.</div>
+          <ul class="steps">
+            <li><span class="step-num">1</span>Uyanır uyanmaz hareket — kısa egzersiz veya yürüyüş dopamin salınımını başlatır</li>
+            <li><span class="step-num">2</span>Sabah ilk 1 saatte telefon/sosyal medya yok — dopamin eşiğini düşürür</li>
+            <li><span class="step-num">3</span>Güneş ışığına ilk 30 dk içinde maruz kal — sirkadiyen saati sabitleme</li>
+            <li><span class="step-num">4</span>Gün içindeki en önemli görev sabah en yüksek dikkat penceresinde</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Ana Sekme Olay Dinleyicileri
+  const mainButtons = document.querySelectorAll('#mainTabNav .tab-btn');
+  const mainContents = document.querySelectorAll('.wrap > .tab-content');
+
+  mainButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      mainButtons.forEach(b => b.classList.remove('active'));
+      mainContents.forEach(c => c.classList.remove('active'));
+      
+      btn.classList.add('active');
+      const targetId = btn.getAttribute('data-target');
+      document.getElementById(targetId).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Alt Sekme Olay Dinleyicileri
+  const subNavs = document.querySelectorAll('.sub-tabs-nav');
+  subNavs.forEach(nav => {
+    const subButtons = nav.querySelectorAll('.tab-btn');
+    const parentId = nav.getAttribute('data-parent');
+    const parentEl = document.getElementById(parentId);
+    const subContents = parentEl.querySelectorAll('.sub-tab-content');
+
+    subButtons.forEach(sBtn => {
+      sBtn.addEventListener('click', () => {
+        subButtons.forEach(b => b.classList.remove('active'));
+        subContents.forEach(c => c.classList.remove('active'));
+        
+        sBtn.classList.add('active');
+        const sTargetId = sBtn.getAttribute('data-target');
+        document.getElementById(sTargetId).classList.add('active');
+      });
+    });
+  });
+
+  // Hack'ler sekmesindeki "Hızlı Bakış" gridini dinamik oluştur
+  generateQuickGlance();
+});
+
+// İnteraktif Onboarding Yönlendirme Mantığı
+function triggerOnboarding(type) {
+  // Çalışma Teknikleri sekmesini aktif et
+  const mainTabWorkingBtn = document.querySelector('#mainTabNav [data-target="tab-calisma"]');
+  mainTabWorkingBtn.click();
+
+  // Hedef alt sekmeyi veya spesifik kartı vurgula
+  const dehbSubTabBtn = document.querySelector('.sub-tabs-nav[data-parent="tab-calisma"] [data-target="sub-calisma-dehb"]');
+  dehbSubTabBtn.click();
+
+  // Tüm kartlardaki geçici vurguyu temizle
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.borderColor = 'var(--color-border-tertiary)';
+    c.style.boxShadow = 'none';
+  });
+
+  let targetCardId = '';
+  if (type === 'baslangic') {
+    targetCardId = 'calisma-ilk2dk';
+  } else if (type === 'dikkat') {
+    targetCardId = 'calisma-uyarimdengesi';
+  } else if (type === 'odaklanamama') {
+    targetCardId = 'calisma-mikrosprint';
+  } else if (type === 'zihin') {
+    targetCardId = 'calisma-aktifcikti';
+  }
+
+  const targetCard = document.getElementById(targetCardId);
+  if (targetCard) {
+    setTimeout(() => {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      targetCard.style.borderColor = 'var(--color-text-info)';
+      targetCard.style.boxShadow = '0 0 12px rgba(29, 78, 216, 0.25)';
+    }, 300);
+  }
+}
+
+// Collapsible UI Mantığı
+function toggleCard(button) {
+  const content = button.nextElementSibling;
+  button.classList.toggle('expanded');
+  content.classList.toggle('expanded');
+  
+  if (button.classList.contains('expanded')) {
+    button.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg);"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      Mekanizma ve Adımları Gizle
+    `;
+  } else {
+    button.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      Mekanizma ve Adımları Göster
+    `;
+  }
+}
+
+// Hızlı Bakış Grid Jeneratörü
+function generateQuickGlance() {
+  const container = document.getElementById('quickGlanceContainer');
+  container.innerHTML = '';
+  const hackCards = document.querySelectorAll('#tab-hackler .hack-card');
+
+  hackCards.forEach(card => {
+    const title = card.querySelector('.hack-title').innerText.split(' — ')[0];
+    const speedBadge = card.querySelector('[data-speed] .badge, .badge-row .badge:nth-child(2), .badge-row .badge:nth-child(3)');
+    const evidenceBadge = card.querySelector('.badge-row .badge:first-child');
+    
+    const item = document.createElement('div');
+    item.className = 'quick-glance-item';
+    item.onclick = () => {
+      // Önce ilgili alt sekmeyi simüle et
+      const parentTabId = card.parentElement.id;
+      const subTabBtn = document.querySelector(`#hackTabNav [data-target="${parentTabId}"]`);
+      if (subTabBtn) subTabBtn.click();
+      
+      // Detayları otomatik aç
+      const trigger = card.querySelector('.collapsible-trigger');
+      if (trigger && !trigger.classList.contains('expanded')) {
+        trigger.click();
+      }
+      
+      setTimeout(() => {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.style.borderColor = 'var(--color-text-info)';
+        setTimeout(() => card.style.borderColor = 'var(--color-border-tertiary)', 2000);
+      }, 150);
+    };
+
+    item.innerHTML = `
+      <div class="quick-glance-title">${title}</div>
+      <div style="display:flex; justify-content:space-between; align-items:center; font-size:9px; color:var(--color-text-tertiary); margin-top:4px;">
+        <span>${evidenceBadge ? evidenceBadge.innerText : ''}</span>
+        <span>${speedBadge ? speedBadge.innerText : ''}</span>
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+// Gelişmiş Dinamik Filtreleme Mantığı
+let activeFilters = {
+  evidence: 'all',
+  speed: 'all'
+};
+
+function applyFilters(type, val) {
+  // Filtre buton UI güncelleme
+  const filterGroupIndex = type === 'evidence' ? 0 : 1;
+  const buttons = document.querySelectorAll(`.filter-panel .filter-group:nth-child(${filterGroupIndex + 1}) .filter-btn`);
+  buttons.forEach(btn => {
+    if (btn.innerText.includes('Güçlü') && val === 'strong') btn.classList.add('active');
+    else if (btn.innerText.includes('Anında') && val === 'aninda') btn.classList.add('active');
+    else if (btn.innerText.includes('Orta/Uzun') && val === 'orta-uzun') btn.classList.add('active');
+    else if (btn.innerText.includes('Hepsi') && val === 'all' && type === 'evidence') btn.classList.add('active');
+    else if (btn.innerText.includes('Tümü') && val === 'all' && type === 'speed') btn.classList.add('active');
+    else btn.classList.remove('active');
+  });
+
+  activeFilters[type] = val;
+
+  const hackCards = document.querySelectorAll('#tab-hackler .hack-card');
+  hackCards.forEach(card => {
+    const cardEvidence = card.getAttribute('data-evidence');
+    const cardSpeed = card.getAttribute('data-speed');
+
+    let matchEvidence = activeFilters.evidence === 'all' || (activeFilters.evidence === 'strong' && cardEvidence === 'strong');
+    let matchSpeed = activeFilters.speed === 'all' || 
+                     (activeFilters.speed === 'aninda' && cardSpeed === 'aninda') || 
+                     (activeFilters.speed === 'orta-uzun' && cardSpeed === 'orta-uzun');
+
+    if (matchEvidence && matchSpeed) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+</script>
+</body>
+</html>
