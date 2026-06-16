@@ -5,10 +5,22 @@ import { Navbar } from '@/components/Navbar';
 import Link from 'next/link';
 import '../globals.css';
 
-export const metadata: Metadata = {
-  title: 'NeuroPortal - DEHB, OKB ve Polimatlık Rehberi',
-  description: 'DEHB (ADHD), OKB (OCD) ve Polimatlık üzerine bilimsel temelli pratik çalışma rehberi ve beyin bilimsel hackleri.',
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteName = 'NeuroPortal';
+
+  if (locale === 'en') {
+    return {
+      title: `${siteName} - ADHD, OCD & Polymathy Guide`,
+      description: 'A science-based practical study guide and neuroscientific hacks for ADHD, OCD, Polymathy, and academic productivity.',
+    };
+  }
+
+  return {
+    title: `${siteName} - DEHB, OKB ve Polimatlık Rehberi`,
+    description: 'DEHB (ADHD), OKB (OCD) ve Polimatlık üzerine bilimsel temelli pratik çalışma rehberi ve beyin bilimsel hackleri.',
+  };
+}
 
 interface RootLayoutProps {
   children: React.ReactNode;

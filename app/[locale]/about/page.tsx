@@ -1,7 +1,40 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { getDictionary, Locale } from '@/lib/dictionary';
 import { Badge } from '@/components/Badge';
 import { academicReferences, academicVision } from '@/lib/technics-data';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const baseUrl = 'https://mind.bugraakin.com';
+
+  const title = locale === 'tr'
+    ? 'Hakkında - NeuroPortal Proje Künyesi ve Bilimsel Çerçeve'
+    : 'About - NeuroPortal Project Credits & Scientific Framework';
+  const description = locale === 'tr'
+    ? 'NeuroPortal vizyonu, misyonu ve 20+ akademik referansla bilimsel kaynakçası.'
+    : 'NeuroPortal vision, mission and bibliography with 20+ academic references.';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/about`,
+      siteName: 'NeuroPortal',
+      locale: locale === 'tr' ? 'tr_TR' : 'en_US',
+      type: 'website',
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/about`,
+      languages: {
+        tr: `${baseUrl}/tr/about`,
+        en: `${baseUrl}/en/about`,
+      },
+    },
+  };
+}
 
 interface AboutPageProps {
   params: Promise<{ locale: string }>;

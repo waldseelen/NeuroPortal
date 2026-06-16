@@ -1,8 +1,35 @@
 import React from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { Locale, getDictionary } from '@/lib/dictionary';
 import { InfoBox } from '@/components/InfoBox';
 import { Badge } from '@/components/Badge';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  const baseUrl = 'https://mind.bugraakin.com';
+
+  return {
+    title: `${dict.okb.title} - NeuroPortal`,
+    description: dict.okb.description,
+    openGraph: {
+      title: `${dict.okb.title} - NeuroPortal`,
+      description: dict.okb.description,
+      url: `${baseUrl}/${locale}/okb`,
+      siteName: 'NeuroPortal',
+      locale: locale === 'tr' ? 'tr_TR' : 'en_US',
+      type: 'website',
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/okb`,
+      languages: {
+        tr: `${baseUrl}/tr/okb`,
+        en: `${baseUrl}/en/okb`,
+      },
+    },
+  };
+}
 
 interface OkbPageProps {
   params: Promise<{ locale: string }>;
