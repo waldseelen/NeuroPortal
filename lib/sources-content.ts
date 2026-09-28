@@ -1,0 +1,1 @@
+export const sourcesMarkdown = { tr: `TRANSLATE_FROM_SOURCES_AT_BUILD`, en: `SOURCES_MD` };
