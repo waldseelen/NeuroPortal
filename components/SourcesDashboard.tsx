@@ -21,7 +21,7 @@ export const SourcesDashboard: React.FC<{ locale: 'tr' | 'en'; entries: SourceEn
         .toLocaleLowerCase(locale === 'tr' ? 'tr-TR' : 'en-US')
         .includes(q);
     });
-  }, [copy.entries, locale, query, type]);
+  }, [entries, locale, query, type]);
 
   const labelType = (value: SourceEntry['type']) => {
     if (locale === 'en') return value;
