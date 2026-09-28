@@ -12,6 +12,7 @@ interface NavbarProps {
       okb: string;
       polimatlik: string;
       technics: string;
+      evidence: string;
       about: string;
     };
     common: {
@@ -72,6 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ dict }) => {
     { id: 'okb', label: dict.navbar.okb, href: `/${currentLocale}/okb` },
     { id: 'polimatlik', label: dict.navbar.polimatlik, href: `/${currentLocale}/polimatlik` },
     { id: 'technics', label: dict.navbar.technics, href: `/${currentLocale}/technics` },
+    { id: 'evidence', label: dict.navbar.evidence, href: `/${currentLocale}/evidence` },
     { id: 'about', label: dict.navbar.about, href: `/${currentLocale}/about` },
   ];
 
