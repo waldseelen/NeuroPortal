@@ -14,6 +14,7 @@ interface NavbarProps {
       technics: string;
       evidence: string;
       about: string;
+      sources: string;
     };
     common: {
       themeToggle: string;
@@ -74,6 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ dict }) => {
     { id: 'polimatlik', label: dict.navbar.polimatlik, href: `/${currentLocale}/polimatlik` },
     { id: 'technics', label: dict.navbar.technics, href: `/${currentLocale}/technics` },
     { id: 'evidence', label: dict.navbar.evidence, href: `/${currentLocale}/evidence` },
+    { id: 'sources', label: dict.navbar.sources, href: `/${currentLocale}/sources` },
     { id: 'about', label: dict.navbar.about, href: `/${currentLocale}/about` },
   ];
 
@@ -86,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ dict }) => {
           href={`/${currentLocale}/adhd`} 
           className="flex items-center gap-2.5 font-bold text-[16px] tracking-tight text-text-primary hover:opacity-90 transition-opacity"
         >
-          <svg className="w-6.5 h-6.5 text-text-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="w-6 h-6 text-text-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
             <path d="M12 6v12" />
             <path d="M8 10c0-2 2-3 4-3s4 1 4 3-2 3-4 3-4-1-4-3z" />
@@ -101,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ dict }) => {
         {/* Dynamic Route Switching Tabs */}
         <nav className="flex items-center bg-bg-secondary p-1 rounded-full border border-border-tertiary">
           {navItems.map((item) => {
-            const isActive = pathname.includes(item.href) || (item.id === 'adhd' && pathname.endsWith(`/${currentLocale}`));
+            const isActive = pathname === item.href || (item.id === 'adhd' && pathname.endsWith(`/${currentLocale}`));
             return (
               <Link
                 key={item.id}
