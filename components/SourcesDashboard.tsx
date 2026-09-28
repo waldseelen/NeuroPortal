@@ -1,19 +1,18 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import { sourceCatalog } from '@/lib/source-catalog';
+import type { SourceEntry } from '@/lib/source-catalog';
 
-type SourceEntry = (typeof sourceCatalog.en.entries)[number];
+type SourceCopy = { title: string; description: string; note: string; sourceLabel: string; openLabel: string };
 
-export const SourcesDashboard: React.FC<{ locale: 'tr' | 'en' }> = ({ locale }) => {
-  const copy = sourceCatalog[locale];
+export const SourcesDashboard: React.FC<{ locale: 'tr' | 'en'; entries: SourceEntry[]; copy: SourceCopy }> = ({ locale, entries, copy }) => {
   const [query, setQuery] = useState('');
   const [type, setType] = useState<'all' | SourceEntry['type']>('all');
   const [expanded, setExpanded] = useState<number | null>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLocaleLowerCase(locale === 'tr' ? 'tr-TR' : 'en-US');
-    return copy.entries.filter((entry) => {
+    return entries.filter((entry) => {
       const matchesType = type === 'all' || entry.type === type;
       if (!matchesType) return false;
       if (!q) return true;
@@ -70,7 +69,7 @@ export const SourcesDashboard: React.FC<{ locale: 'tr' | 'en' }> = ({ locale }) 
           </select>
         </div>
         <div className="text-[11px] text-text-tertiary">
-          {filtered.length} / {copy.entries.length} {locale === 'tr' ? 'kayıt gösteriliyor' : 'records shown'}
+          {filtered.length} / {entries.length} {locale === 'tr' ? 'kayıt gösteriliyor' : 'records shown'}
         </div>
       </section>
 
