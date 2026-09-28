@@ -65,6 +65,10 @@ export default async function RootLayout({
               <span>·</span>
               <Link href={`/${locale}/technics`} className="hover:text-text-info transition-colors">Technics</Link>
               <span>·</span>
+              <Link href={`/${locale}/evidence`} className="hover:text-text-info transition-colors">{dict.navbar.evidence}</Link>
+              <span>·</span>
+              <Link href={`/${locale}/sources`} className="hover:text-text-info transition-colors">{dict.navbar.sources}</Link>
+              <span>·</span>
               <Link href={`/${locale}/about`} className="hover:text-text-info transition-colors">{dict.navbar.about}</Link>
             </div>
 
