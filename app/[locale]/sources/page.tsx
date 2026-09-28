@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { SourcesDashboard } from '@/components/SourcesDashboard';
-import { Locale } from '@/lib/dictionary';
+import { readSourceEntries, sourceCopy } from '@/lib/source-catalog';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -21,5 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function SourcesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return <SourcesDashboard locale={(locale === 'en' ? 'en' : 'tr') as Locale} />;
+  const normalizedLocale = locale === 'en' ? 'en' : 'tr';
+  const entries = readSourceEntries();
+  return <SourcesDashboard locale={normalizedLocale} entries={entries} copy={sourceCopy[normalizedLocale]} />;
 }
