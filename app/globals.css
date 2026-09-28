@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-bg-primary: var(--color-background-primary);
+  --color-bg-secondary: var(--color-background-secondary);
+  --color-bg-info: var(--color-background-info);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-info: var(--color-text-info);
+  --color-border-secondary: var(--color-border-secondary);
+  --color-border-tertiary: var(--color-border-tertiary);
+}
 
 :root {
   --gap: 14px;
@@ -66,10 +77,9 @@ body {
   background: var(--color-text-tertiary);
 }
 
-
 /* Scale down the layout for 125% OS scaling to match the 100% scaling view */
 @media (max-width: 1550px) and (min-width: 1200px) {
-    body {
-        zoom: 0.8;
-    }
+  body {
+    zoom: 0.8;
+  }
 }
