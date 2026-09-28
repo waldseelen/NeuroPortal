@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 const locales = ['tr', 'en'] as const;
-const pages = ['adhd', 'okb', 'polimatlik', 'technics', 'evidence', 'about'] as const;
+const pages = ['adhd', 'okb', 'polimatlik', 'technics', 'evidence', 'sources', 'about'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://mind.bugraakin.com';
